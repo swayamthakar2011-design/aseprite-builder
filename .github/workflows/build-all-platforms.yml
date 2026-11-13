@@ -55,13 +55,12 @@ jobs:
       - name: Download & Extract Skia
         shell: powershell
         run: |
-          Invoke-WebRequest -Uri "https://github.com/aseprite/skia/releases/download/m124-08a5439a6b/Skia-Windows-Release-x64.zip" -OutFile "skia.zip" -UseBasicParsing
+          curl.exe -L --retry 5 --retry-delay 3 -o skia.zip "https://github.com"
           Expand-Archive -Force "skia.zip" "skia"
-          
-          # Download icudtl.dat (required for ICU support)
           mkdir skia\out\Release-x64 -Force
-          Invoke-WebRequest -Uri "https://github.com/aseprite/skia/releases/download/m124-08a5439a6b/icudtl.dat" -OutFile "skia/out/Release-x64/icudtl.dat" -UseBasicParsing
+          curl.exe -L --retry 5 --retry-delay 3 -o skia/out/Release-x64/icudtl.dat "https://github.com"
           Write-Host "Skia extracted successfully with icudtl.dat"
+
 
       - name: Initialize MSVC Environment
         uses: ilammy/msvc-dev-cmd@v1
