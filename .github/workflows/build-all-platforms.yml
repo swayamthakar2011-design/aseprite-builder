@@ -54,11 +54,13 @@ jobs:
 
       - name: Download & Extract Skia
         shell: powershell
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          curl.exe -L --retry 5 --retry-delay 3 -o skia.zip "https://github.com"
+          gh release download m124-08a5439a6b -R aseprite/skia -p "Skia-Windows-Release-x64.zip" -O skia.zip
           Expand-Archive -Force "skia.zip" "skia"
           mkdir skia\out\Release-x64 -Force
-          curl.exe -L --retry 5 --retry-delay 3 -o skia/out/Release-x64/icudtl.dat "https://github.com"
+          gh release download m124-08a5439a6b -R aseprite/skia -p "icudtl.dat" -D skia/out/Release-x64
           Write-Host "Skia extracted successfully with icudtl.dat"
 
 
