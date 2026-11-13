@@ -77,6 +77,10 @@ jobs:
             -DSKIA_DIR="$env:GITHUB_WORKSPACE\skia" `
             -DSKIA_LIBRARY_DIR="$env:GITHUB_WORKSPACE\skia\out\Release-x64" `
             -DSKIA_LIBRARY="$env:GITHUB_WORKSPACE\skia\out\Release-x64\skia.lib" `
+            -DUSE_SHARED_JPEGLIB=OFF `
+            -DUSE_SHARED_ZLIB=OFF `
+            -DUSE_SHARED_LIBPNG=OFF `
+            -DUSE_SHARED_WEBP=OFF `
             -DENABLE_SCRIPTING=OFF `
             -DENABLE_UPDATER=OFF `
             -DENABLE_TESTS=OFF `
